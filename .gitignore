@@ -1,0 +1,41 @@
+# .NET
+bin/
+obj/
+publish/
+*.user
+*.suo
+*.DotSettings.user
+
+# Node (scripts only)
+node_modules/
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Serverless
+.serverless/
+.serverless_plugins/
+
+# Build
+dist/
+build/
+deploy-package.zip
+*.log
+
+# Testing
+coverage/
+.nyc_output/

@@ -1,0 +1,17 @@
+{
+  "name": "serverless-api-csharp",
+  "version": "1.0.0",
+  "description": "AWS Lambda - Serverless API em C# (.NET 8)",
+  "scripts": {
+    "build": "cd src && dotnet publish -c Release -o bin/Release/net8.0/publish",
+    "package": "cd src/bin/Release/net8.0/publish && zip -r deploy-package.zip .",
+    "predeploy": "npm run build && npm run package",
+    "deploy": "serverless deploy",
+    "deploy:prod": "serverless deploy --stage prod",
+    "remove": "serverless remove",
+    "logs:text": "serverless logs -f getText -t",
+    "logs:time": "serverless logs -f getTime -t",
+    "invoke:text": "serverless invoke local -f getText",
+    "invoke:time": "serverless invoke local -f getTime"
+  }
+}

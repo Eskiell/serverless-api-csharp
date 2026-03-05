@@ -1,0 +1,49 @@
+service: serverless-api-csharp
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: dotnet8
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  memorySize: 256
+  timeout: 10
+  environment:
+    STAGE: ${self:provider.stage}
+    LOG_LEVEL: info
+  tracing:
+    lambda: true
+    apiGateway: true
+  logs:
+    httpApi: true
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - xray:PutTraceSegments
+            - xray:PutTelemetryRecords
+          Resource: '*'
+        - Effect: Allow
+          Action:
+            - cloudwatch:PutMetricData
+          Resource: '*'
+
+package:
+  artifact: src/bin/Release/net8.0/publish/deploy-package.zip
+
+functions:
+  getText:
+    handler: ServerlessApi::ServerlessApi.Handlers.GetTextHandler::Handle
+    events:
+      - httpApi:
+          path: /hello
+          method: GET
+
+  getTime:
+    handler: ServerlessApi::ServerlessApi.Handlers.GetTimeHandler::Handle
+    events:
+      - httpApi:
+          path: /server-time
+          method: GET
