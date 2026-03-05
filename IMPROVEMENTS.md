@@ -32,19 +32,17 @@ Sugestões de evolução para este projeto exemplo.
 
 - Adicionar step de testes e lint antes do deploy
 - Adicionar step de **smoke test** após o deploy (chamar os endpoints e validar resposta)
-- Considerar usar **OIDC** ao invés de access keys estáticas para autenticação AWS
 
 ## 6. Monitoramento e alertas
 
 - Configurar **CloudWatch Alarms** para erros 5xx, latência alta e throttles
-- Integrar alertas com Slack, email ou PagerDuty
+- Integrar alertas com Slack ou discord
 - Criar um dashboard no CloudWatch com métricas das funções
 
 ## 7. Infraestrutura
 
 - Adicionar um **custom domain** (ex: `api.seusite.com`) via Route53 + API Gateway
 - Considerar **WAF** (Web Application Firewall) para proteção em prod
-- Adicionar tags nos recursos para organização e billing
 
 ## 8. Documentação da API
 
