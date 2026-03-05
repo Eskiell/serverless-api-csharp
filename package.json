@@ -13,5 +13,8 @@
     "logs:time": "serverless logs -f getTime -t",
     "invoke:text": "serverless invoke local -f getText",
     "invoke:time": "serverless invoke local -f getTime"
+  },
+  "dependencies": {
+    "serverless": "^4.33.0"
   }
 }
