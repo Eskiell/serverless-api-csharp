@@ -12,9 +12,14 @@ public class GetTextHandler
         APIGatewayHttpApiV2ProxyRequest request, ILambdaContext context)
     {
         return await Middleware.WithObservability("getText", request, context,
-            (req, ctx) => Task.FromResult(Response.Build(200, new
-            {
-                message = "Bem-vindo à API Serverless!"
-            })));
+            Cache.WithCache(
+                key: "getText",
+                ttlSeconds: 60,
+                handler: (req, ctx) => Task.FromResult(Response.Build(200, new
+                {
+                    message = "Bem-vindo à API Serverless!"
+                }))
+            )
+        );
     }
 }
